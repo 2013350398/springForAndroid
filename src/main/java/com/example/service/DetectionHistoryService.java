@@ -11,16 +11,11 @@ import java.util.List;
 public class DetectionHistoryService {
     @Autowired
     private DetectionHistoryMapper detectionHistoryMapper;
-    public Integer insertDetectionHistory(HistoryInfo historyInfo) {return detectionHistoryMapper.insert(historyInfo);}
+    public Integer insertDetectionHistory(HistoryInfo historyInfo) {return detectionHistoryMapper.insertHistory(historyInfo);}
 
-    public Integer deletetDetectionHistory(Integer detectionHistoryid) {return detectionHistoryMapper.delete(detectionHistoryid);}
-    public List<HistoryInfo> select() {
-        List<HistoryInfo>historyInfoList=detectionHistoryMapper.select();
-        for (HistoryInfo h:historyInfoList) {
-            System.out.println("historyInfoList:"+h.toString());
-        }
-        return detectionHistoryMapper.select();}
-    public HistoryInfo selectById(Integer id) {return detectionHistoryMapper.selectById(id);}
-    public List<HistoryInfo> selectByUserId(Integer user_id) {return detectionHistoryMapper.selectByUserId(user_id);}
+    public Integer deletetDetectionHistory(Integer detectionHistoryid) {return detectionHistoryMapper.deleteHistory(detectionHistoryid);}
+    public List<HistoryInfo> selectHistory() {return detectionHistoryMapper.selectHistory();}
+    public HistoryInfo selectById(Integer id) {return detectionHistoryMapper.selectHistoryById(id);}
+    public List<HistoryInfo> selectByUserId(Integer user_id) {return detectionHistoryMapper.selectHistoryByUserId(user_id);}
 
 }

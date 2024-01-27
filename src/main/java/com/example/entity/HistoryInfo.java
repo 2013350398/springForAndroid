@@ -22,4 +22,5 @@ public class HistoryInfo {
         this.uploadFlag=uploadFlag;
 
     }
+    public HistoryInfo(){}
 }

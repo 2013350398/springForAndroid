@@ -51,9 +51,9 @@ public class DataController {
     }
     //发送对应user的history记录
     @GetMapping("/sendHistory")
-    public List<HistoryInfo> sendHistory(UserInfo user) {
+    public List<HistoryInfo> sendHistory() {
 //        List<UserInfo> userList = userService.select();
-        List<HistoryInfo> historyList = detectionHistoryService.select();
+        List<HistoryInfo> historyList = detectionHistoryService.selectHistory();
 //        UploadData sendData=new UploadData(userList,historyList);
         return historyList;
     }
