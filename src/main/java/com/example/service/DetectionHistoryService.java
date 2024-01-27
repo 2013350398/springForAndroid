@@ -14,7 +14,13 @@ public class DetectionHistoryService {
     public Integer insertDetectionHistory(HistoryInfo historyInfo) {return detectionHistoryMapper.insert(historyInfo);}
 
     public Integer deletetDetectionHistory(Integer detectionHistoryid) {return detectionHistoryMapper.delete(detectionHistoryid);}
-    public List<HistoryInfo> select() {return detectionHistoryMapper.select();}
+    public List<HistoryInfo> select() {
+        List<HistoryInfo>historyInfoList=detectionHistoryMapper.select();
+        for (HistoryInfo h:historyInfoList) {
+            System.out.println("historyInfoList:"+h.toString());
+        }
+        return detectionHistoryMapper.select();}
     public HistoryInfo selectById(Integer id) {return detectionHistoryMapper.selectById(id);}
+    public List<HistoryInfo> selectByUserId(Integer user_id) {return detectionHistoryMapper.selectByUserId(user_id);}
 
 }

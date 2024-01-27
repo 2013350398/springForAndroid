@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into user(userid, username, password, phone, emil) values(#{userid}, #{username}, #{password}, #{phone}, #{emil})")
+    @Insert("insert into user(userid, username, password, phone, emil, login) values(#{userid}, #{username}, #{password}, #{phone}, #{emil}, #{login})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     Integer insert(UserInfo userInfo);
 
