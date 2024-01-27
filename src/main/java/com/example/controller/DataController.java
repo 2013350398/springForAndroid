@@ -28,11 +28,12 @@ public class DataController {
             // 获取存储的两个列表
             List<UserInfo> userList = requestData.getUserInfoList();
             List<HistoryInfo> historyList = requestData.getHistoryInfoList();
-
+            List<Integer> deleteHistory=requestData.getDeleteHistory();
             // 处理数据 更新数据库
             updateUser(userList);
             updateHistory(historyList);
-//            System.out.println("userList: " + userList.size());
+            deleteHistory(deleteHistory);
+//            System.out.println("deleteHistory: " + deleteHistory.toString());
 //            System.out.println("historyList: " + historyList.size());
         }catch(Exception e){
             System.out.println(e.toString());
@@ -57,10 +58,6 @@ public class DataController {
 //        UploadData sendData=new UploadData(userList,historyList);
         return historyList;
     }
-    @GetMapping("/test")
-    public void hello() {
-        System.out.println("hello");
-    }
 
 //insert-0
 //没变化-1
@@ -74,9 +71,9 @@ public class DataController {
             else if(u.getUploadFlag()==2){
                 System.out.println("updateUser"+u.toString());
                 userService.updateUser(u);}
-            else if(u.getUploadFlag()==3){
-                System.out.println("deletetUser"+u.toString());
-                userService.deletetUser(u.getUserid());}
+//            else if(u.getUploadFlag()==3){
+//                System.out.println("deletetUser"+u.toString());
+//                userService.deletetUser(u.getUserid());}
         }
 //        System.out.println("updateUser");
     }
@@ -85,10 +82,17 @@ public class DataController {
             if(h.getUploadFlag()==0){
                 System.out.println("insertDetectionHistory"+h.toString());
                 detectionHistoryService.insertDetectionHistory(h);}
-            else if(h.getUploadFlag()==3){
-                System.out.println("deletetDetectionHistory"+h.toString());
-                detectionHistoryService.deletetDetectionHistory(h.getId());}
+//            else if(h.getUploadFlag()==3){
+//                System.out.println("deletetDetectionHistory"+h.toString());
+//                detectionHistoryService.deletetDetectionHistory(h.getId());}
         }
 //        System.out.println("updateHistory");
     }
+    public void deleteHistory(List<Integer> deleteHistory){
+        for (Integer h:deleteHistory) {
+            System.out.println("deletetDetectionHistory"+h.toString());
+            detectionHistoryService.deletetDetectionHistory(h);
+        }
+    }
+
 }
