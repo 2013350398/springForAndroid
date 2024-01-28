@@ -18,6 +18,8 @@ public class DataController {
     private DetectionHistoryService detectionHistoryService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PhotoService photorService;
     //获取定时传送的数据
     @PostMapping("/receiveData")
     public String receiveData(@RequestBody UploadData requestData) {
@@ -29,10 +31,14 @@ public class DataController {
             List<UserInfo> userList = requestData.getUserInfoList();
             List<HistoryInfo> historyList = requestData.getHistoryInfoList();
             List<Integer> deleteHistory=requestData.getDeleteHistory();
+            Integer deleteUser= requestData.getDeleteUser();
+            List<Photo> photoList=requestData.getPhotoList();
             // 处理数据 更新数据库
+            insertPhoto(photoList);
             updateUser(userList);
             updateHistory(historyList);
             deleteHistory(deleteHistory);
+            deleteUser(deleteUser);
 //            System.out.println("deleteHistory: " + deleteHistory.toString());
 //            System.out.println("historyList: " + historyList.size());
         }catch(Exception e){
@@ -77,6 +83,15 @@ public class DataController {
         }
 //        System.out.println("updateUser");
     }
+    public void deleteUser(Integer deleteUser){
+        if(deleteUser!=-1){
+            System.out.println("deleteUser"+userService.selectById(deleteUser).toString());
+            //删除相关历史记录
+            detectionHistoryService.deletetDetectionHistoryByUserId(deleteUser);
+            //删除用户
+            userService.deletetUser(deleteUser);
+        }
+    }
     public void updateHistory( List<HistoryInfo> historyList) {
         for (HistoryInfo h:historyList) {
             if(h.getUploadFlag()==0){
@@ -95,4 +110,18 @@ public class DataController {
         }
     }
 
+    public void insertPhoto(List<Photo> photoList){
+        for (Photo p:photoList) {
+            //跟随history-只需要insert
+            HistoryInfo historyInfo=null;
+            historyInfo=detectionHistoryService.selectById(p.getHistory_id());
+            if(historyInfo==null){
+                System.out.println("insertPhoto-in:"+p.getHistory_id());
+                photorService.insertPhoto(p);
+            }
+            else{
+                System.out.println("insertPhoto-historyInfo:"+historyInfo.toString());
+            }
+        }
+    }
 }

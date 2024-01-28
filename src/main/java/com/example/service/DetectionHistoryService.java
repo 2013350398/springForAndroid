@@ -14,6 +14,7 @@ public class DetectionHistoryService {
     public Integer insertDetectionHistory(HistoryInfo historyInfo) {return detectionHistoryMapper.insertHistory(historyInfo);}
 
     public Integer deletetDetectionHistory(Integer detectionHistoryid) {return detectionHistoryMapper.deleteHistory(detectionHistoryid);}
+    public Integer deletetDetectionHistoryByUserId(Integer userId) {return detectionHistoryMapper.deletetDetectionHistoryByUserId(userId);}
     public List<HistoryInfo> selectHistory() {return detectionHistoryMapper.selectHistory();}
     public HistoryInfo selectById(Integer id) {return detectionHistoryMapper.selectHistoryById(id);}
     public List<HistoryInfo> selectByUserId(Integer user_id) {return detectionHistoryMapper.selectHistoryByUserId(user_id);}

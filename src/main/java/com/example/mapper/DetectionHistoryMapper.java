@@ -22,6 +22,8 @@ public interface DetectionHistoryMapper {
 
     @Delete("delete from history where id = #{id}")
     Integer deleteHistory(Integer id);
+    @Delete("delete from history where user_id = #{user_id}")
+    Integer deletetDetectionHistoryByUserId(Integer user_id);
 
 //    @Update("update history set password = #{password}, phone = #{phone}, emil = #{emil} where userid = #{userid}")
 //    Integer update(DetectionHistory history);
