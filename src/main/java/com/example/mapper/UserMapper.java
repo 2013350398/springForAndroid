@@ -20,7 +20,7 @@ public interface UserMapper {
     @Delete("delete from user where userid = #{userid}")
     Integer delete(Integer userid);
 
-    @Update("update user set password = #{password}, phone = #{phone}, emil = #{emil} where userid = #{userid}")
+    @Update("update user set password = #{password}, phone = #{phone}, emil = #{emil}, login = #{login} where userid = #{userid}")
     Integer update(UserInfo userInfo);
 
 
