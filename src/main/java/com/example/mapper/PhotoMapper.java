@@ -13,8 +13,8 @@ public interface PhotoMapper {
     @Select("select * from photo")
     List<Photo> select();
 
-//    @Select("select * from photo where photoid = #{photoid}")
-//    Photo selectById(Integer photoid);
+    @Select("select * from photo where history_id = #{history_id}")
+    Photo selectById(Integer history_id);
 
     @Delete("delete from photo where id = #{id}")
     Integer delete(Integer id);

@@ -64,6 +64,12 @@ public class DataController {
 //        UploadData sendData=new UploadData(userList,historyList);
         return historyList;
     }
+    //传送照片
+    @GetMapping("/sendPhoto")
+    public List<Photo> sendPhoto(){
+        List<Photo> photoList=photorService.selectAllPhoto();
+        return photoList;
+    }
 
 //insert-0
 //没变化-1

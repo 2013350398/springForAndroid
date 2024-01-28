@@ -13,5 +13,5 @@ public class PhotoService {
     public Integer insertPhoto(Photo photo) {return photoMapper.insert(photo);}
     public Integer deletetPhoto(Integer id) {return photoMapper.delete(id);}
     public List<Photo> selectAllPhoto() {return photoMapper.select();}
-//    public Photo selectById(Integer photoid) {return photoMapper.selectById(photoid);}
+    public Photo selectById(Integer history_id) {return photoMapper.selectById(history_id);}
 }
