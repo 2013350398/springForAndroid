@@ -113,6 +113,8 @@ public class DataController {
         for (Integer h:deleteHistory) {
             System.out.println("deletetDetectionHistory"+h.toString());
             detectionHistoryService.deletetDetectionHistory(h);
+            //photo也删
+            photorService.deletetPhoto(h);
         }
     }
 
