@@ -42,7 +42,7 @@ public class DataController {
 //            System.out.println("deleteHistory: " + deleteHistory.toString());
 //            System.out.println("historyList: " + historyList.size());
         }catch(Exception e){
-            System.out.println(e.toString());
+//            System.out.println(e.toString());
         }
 
         // 返回响应
@@ -78,10 +78,10 @@ public class DataController {
     public void updateUser(List<UserInfo> userList) {
         for (UserInfo u:userList) {
             if(u.getUploadFlag()==0){
-                System.out.println("insertUser"+u.toString());
+//                System.out.println("insertUser"+u.toString());
                 userService.insertUser(u);}
             else if(u.getUploadFlag()==2){
-                System.out.println("updateUser"+u.toString());
+//                System.out.println("updateUser"+u.toString());
                 userService.updateUser(u);}
 //            else if(u.getUploadFlag()==3){
 //                System.out.println("deletetUser"+u.toString());
@@ -91,7 +91,7 @@ public class DataController {
     }
     public void deleteUser(Integer deleteUser){
         if(deleteUser!=-1){
-            System.out.println("deleteUser"+userService.selectById(deleteUser).toString());
+//            System.out.println("deleteUser"+userService.selectById(deleteUser).toString());
             //删除相关历史记录
             detectionHistoryService.deletetDetectionHistoryByUserId(deleteUser);
             //删除用户
@@ -101,7 +101,7 @@ public class DataController {
     public void updateHistory( List<HistoryInfo> historyList) {
         for (HistoryInfo h:historyList) {
             if(h.getUploadFlag()==0){
-                System.out.println("insertDetectionHistory"+h.toString());
+//                System.out.println("insertDetectionHistory"+h.toString());
                 detectionHistoryService.insertDetectionHistory(h);}
 //            else if(h.getUploadFlag()==3){
 //                System.out.println("deletetDetectionHistory"+h.toString());
@@ -111,7 +111,7 @@ public class DataController {
     }
     public void deleteHistory(List<Integer> deleteHistory){
         for (Integer h:deleteHistory) {
-            System.out.println("deletetDetectionHistory"+h.toString());
+//            System.out.println("deletetDetectionHistory"+h.toString());
             detectionHistoryService.deletetDetectionHistory(h);
             //photo也删
             photorService.deletetPhoto(h);
@@ -124,11 +124,11 @@ public class DataController {
             HistoryInfo historyInfo=null;
             historyInfo=detectionHistoryService.selectById(p.getHistory_id());
             if(historyInfo==null){
-                System.out.println("insertPhoto-in:"+p.getHistory_id());
+//                System.out.println("insertPhoto-in:"+p.getHistory_id());
                 photorService.insertPhoto(p);
             }
             else{
-                System.out.println("insertPhoto-historyInfo:"+historyInfo.toString());
+//                System.out.println("insertPhoto-historyInfo:"+historyInfo.toString());
             }
         }
     }
