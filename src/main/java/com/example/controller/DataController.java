@@ -39,10 +39,10 @@ public class DataController {
             updateHistory(historyList);
             deleteHistory(deleteHistory);
             deleteUser(deleteUser);
-//            System.out.println("deleteHistory: " + deleteHistory.toString());
-//            System.out.println("historyList: " + historyList.size());
+            System.out.println("deleteHistory: " + deleteHistory.toString());
+            System.out.println("historyList: " + historyList.size());
         }catch(Exception e){
-//            System.out.println(e.toString());
+            System.out.println(e.toString());
         }
 
         // 返回响应
@@ -52,6 +52,7 @@ public class DataController {
     @GetMapping("/sendUser")
     public List<UserInfo> sendUser() {
         List<UserInfo> userList = userService.select();
+        System.out.println("sendUser: " + userList.size());
 //        List<HistoryInfo> historyList = detectionHistoryService.select();
 //        UploadData sendData=new UploadData(userList,historyList);
         return userList;
@@ -62,12 +63,15 @@ public class DataController {
 //        List<UserInfo> userList = userService.select();
         List<HistoryInfo> historyList = detectionHistoryService.selectHistory();
 //        UploadData sendData=new UploadData(userList,historyList);
+        System.out.println("sendHistory: " + historyList.size());
+
         return historyList;
     }
     //传送照片
     @GetMapping("/sendPhoto")
     public List<Photo> sendPhoto(){
         List<Photo> photoList=photorService.selectAllPhoto();
+        System.out.println("sendPhoto: " + photoList.size());
         return photoList;
     }
 
@@ -78,20 +82,20 @@ public class DataController {
     public void updateUser(List<UserInfo> userList) {
         for (UserInfo u:userList) {
             if(u.getUploadFlag()==0){
-//                System.out.println("insertUser"+u.toString());
+                System.out.println("insertUser"+u.toString());
                 userService.insertUser(u);}
             else if(u.getUploadFlag()==2){
-//                System.out.println("updateUser"+u.toString());
+                System.out.println("updateUser"+u.toString());
                 userService.updateUser(u);}
 //            else if(u.getUploadFlag()==3){
 //                System.out.println("deletetUser"+u.toString());
 //                userService.deletetUser(u.getUserid());}
         }
-//        System.out.println("updateUser");
+        System.out.println("updateUser");
     }
     public void deleteUser(Integer deleteUser){
         if(deleteUser!=-1){
-//            System.out.println("deleteUser"+userService.selectById(deleteUser).toString());
+            System.out.println("deleteUser"+userService.selectById(deleteUser).toString());
             //删除相关历史记录
             detectionHistoryService.deletetDetectionHistoryByUserId(deleteUser);
             //删除用户
@@ -101,7 +105,7 @@ public class DataController {
     public void updateHistory( List<HistoryInfo> historyList) {
         for (HistoryInfo h:historyList) {
             if(h.getUploadFlag()==0){
-//                System.out.println("insertDetectionHistory"+h.toString());
+                System.out.println("insertDetectionHistory"+h.toString());
                 detectionHistoryService.insertDetectionHistory(h);}
 //            else if(h.getUploadFlag()==3){
 //                System.out.println("deletetDetectionHistory"+h.toString());
